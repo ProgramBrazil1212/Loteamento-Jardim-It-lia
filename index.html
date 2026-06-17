@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loteamento Jardim Itália</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>🏡 Loteamento Jardim Itália</h1>
+  <input id="search" placeholder="Pesquisar lote..." />
+</header>
+
+<main>
+
+  <!-- MAPA -->
+  <div id="mapa">
+
+    <!-- Lotes (vamos expandir depois automaticamente com JSON) -->
+    <div class="lote disponivel" onclick="abrirLote(1)">1</div>
+    <div class="lote disponivel" onclick="abrirLote(2)">2</div>
+    <div class="lote vendido" onclick="abrirLote(3)">3</div>
+    <div class="lote disponivel" onclick="abrirLote(4)">4</div>
+    <div class="lote reservado" onclick="abrirLote(5)">5</div>
+    <div class="lote disponivel" onclick="abrirLote(6)">6</div>
+
+  </div>
+
+</main>
+
+<!-- POPUP -->
+<div id="popup" class="popup hidden">
+  <div class="popup-content">
+    <span onclick="fecharPopup()" class="close">X</span>
+
+    <h2>Lote <span id="lote-num"></span></h2>
+
+    <p><b>Área:</b> <span id="area"></span></p>
+    <p><b>Valor:</b> <span id="valor"></span></p>
+    <p><b>Proprietário:</b> <span id="prop"></span></p>
+    <p><b>Telefone:</b> <span id="tel"></span></p>
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
