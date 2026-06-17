@@ -1,13 +1,184 @@
-/* Estilização da Tabela Interna do Modal */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
+/* --- RESET E ESTILOS GERAIS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f1f5f9; /* Um cinza muito clarinho, quase branco */
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+/* --- CONTAINER PRINCIPAL --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- CABEÇALHO --- */
+header {
+    background: #064e3b; /* O verde-escuro do logo do Jardim Itália */
+    color: white;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+header p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* --- INSTRUÇÕES --- */
+.instrucoes {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 5px solid #059669;
+    margin-bottom: 20px;
     font-size: 0.95rem;
 }
 
+/* --- CONTAINER DA IMAGEM DO MAPA --- */
+.mapa-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden; /* Evita que os blocos saiam do mapa no mobile */
+}
+
+#planta-imagem {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+/* --- CAMADA DE CLIQUE (AS ZONAS DO LOTE) --- */
+#camada-cliques {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ESTA É A PARTE IMPORTANTE:
+   O código abaixo vai colocar uma borda pontilhada transparente para você ver onde clicar.
+   Quando passar o mouse (ou tocar no celular), ela vai acender em azul.
+*/
+.zona-lote {
+    position: absolute;
+    background-color: rgba(59, 130, 246, 0.0); /* Invisível por padrão */
+    border: 1px dashed rgba(59, 130, 246, 0.4); /* Borda pontilhada suave */
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Efeito ao passar o mouse ou tocar */
+.zona-lote:hover {
+    background-color: rgba(59, 130, 246, 0.2); /* Acende em azul transparente */
+    border: 2px solid #3b82f6; /* Borda azul sólida */
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+/* --- O MODAL (PAINEL FLUTUANTE) - EFEITO GLASSMORPHISM --- */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 9999; /* Garante que fica em cima de tudo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5); /* Fundo preto transparente */
+}
+
+.modal-conteudo {
+    background: rgba(255, 255, 255, 0.7); /* Fundo branco transparente */
+    margin: 10% auto;
+    padding: 25px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    
+    /* O SEGREDO DO EFEITO DE VIDRO FOSCO (GLASSMORPHISM) */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    box-shadow: 0 12px 36px rgba(0,0,0,0.15);
+    position: relative;
+    animation: animacaoModal 0.4s ease;
+}
+
+/* Animação suave para o modal aparecer */
+@keyframes animacaoModal {
+    from {transform: translateY(-50px); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+}
+
+/* Botão de Fechar */
+.fechar-btn {
+    color: #64748b;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.fechar-btn:hover {
+    color: #0f172a;
+}
+
+#modal-titulo-quadra {
+    color: #064e3b; /* Verde escuro */
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.linha-divisoria {
+    height: 2px;
+    background-color: rgba(6, 78, 59, 0.2);
+    margin-bottom: 15px;
+    border-radius: 2px;
+}
+
+/* --- TABELA DE LOTES DENTRO DO MODAL --- */
+.container-tabela {
+    overflow-x: auto; /* Rolagem lateral no celular se a tabela for grande */
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    background-color: white;
+}
+
 th, td {
-    padding: 10px;
+    padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #e2e8f0;
 }
@@ -16,38 +187,55 @@ th {
     background-color: #f1f5f9;
     color: #475569;
     font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
 }
 
-/* Inputs de Telefone elegantes */
-.input-tel {
-    width: 90%;
-    padding: 6px 10px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    transition: border 0.2s;
+tr:last-child td {
+    border-bottom: none;
 }
 
-.input-tel:focus {
-    border-color: #3b82f6;
-    outline: none;
-}
-
-/* Badges coloridas automáticas para saber de quem é o lote */
+/* --- BADGES (ETIQUETAS) DOS PROPRIETÁRIOS --- */
 .badge-familia {
     background-color: #dcfce7;
     color: #15803d;
-    padding: 4px 8px;
+    padding: 4px 10px;
     border-radius: 12px;
     font-size: 0.8rem;
-    font-weight: bold;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
 .badge-loteadores {
     background-color: #fef9c3;
     color: #a16207;
-    padding: 4px 8px;
+    padding: 4px 10px;
     border-radius: 12px;
     font-size: 0.8rem;
-    font-weight: bold;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* --- INPUT DE TELEFONE --- */
+.input-tel {
+    width: 100%;
+    max-width: 160px;
+    padding: 7px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #1e293b;
+    transition: all 0.2s;
+}
+
+.input-tel:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input-tel::placeholder {
+    color: #94a3b8;
+    font-style: italic;
 }
