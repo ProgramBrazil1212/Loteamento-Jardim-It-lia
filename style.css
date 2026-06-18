@@ -5,28 +5,197 @@
 }
 
 body {
-    background-color: #0f172a; /* Um fundo escuro bem chique para destacar o mapa */
-    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 10px;
+    background-color: #f1f5f9;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background: #064e3b;
+    color: white;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+header p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.instrucoes {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 5px solid #059669;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
 }
 
 .mapa-container {
     position: relative;
     width: 100%;
-    max-width: 1000px; /* Controla o tamanho máximo do mapa na tela */
     margin: 0 auto;
+    overflow: hidden;
 }
 
 #planta-imagem {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
 }
 
-/* O resto do seu arquivo estilo.css (da linha #camada-cliques para baixo) pode continuar IGUAL */
+#camada-cliques {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.zona-lote {
+    position: absolute;
+    background-color: rgba(59, 130, 246, 0.0);
+    border: 1px dashed rgba(59, 130, 246, 0.4);
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease-in-out;
+}
+
+.zona-lote:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+    border: 2px solid #3b82f6;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-conteudo {
+    background: rgba(255, 255, 255, 0.7);
+    margin: 10% auto;
+    padding: 25px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.15);
+    position: relative;
+    animation: animacaoModal 0.4s ease;
+}
+
+@keyframes animacaoModal {
+    from {transform: translateY(-50px); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+}
+
+.fechar-btn {
+    color: #64748b;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.fechar-btn:hover {
+    color: #0f172a;
+}
+
+#modal-titulo-quadra {
+    color: #064e3b;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.linha-divisoria {
+    height: 2px;
+    background-color: rgba(6, 78, 59, 0.2);
+    margin-bottom: 15px;
+    border-radius: 2px;
+}
+
+.container-tabela {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    background-color: white;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.input-tel {
+    width: 100%;
+    max-width: 160px;
+    padding: 7px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #1e293b;
+    transition: all 0.2s;
+}
+
+.input-tel:focus {
+    border-color: #3b82f6;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input-tel::placeholder {
+    color: #94a3b8;
+    font-style: italic;
+}
