@@ -1,3 +1,4 @@
+/* --- RESET E ESTILOS GERAIS --- */
 * {
     margin: 0;
     padding: 0;
@@ -11,14 +12,16 @@ body {
     line-height: 1.6;
 }
 
+/* --- CONTAINER PRINCIPAL --- */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
+/* --- CABEÇALHO --- */
 header {
-    background: #064e3b;
+    background: #064e3b; /* Verde do Jardim Itália */
     color: white;
     padding: 30px 20px;
     border-radius: 12px;
@@ -36,6 +39,7 @@ header p {
     opacity: 0.9;
 }
 
+/* --- INSTRUÇÕES --- */
 .instrucoes {
     background-color: #d1fae5;
     color: #065f46;
@@ -46,11 +50,12 @@ header p {
     font-size: 0.95rem;
 }
 
+/* --- CONTAINER DA IMAGEM E DOS CLIQUES (ZONA CRÍTICA) --- */
 .mapa-container {
-    position: relative;
+    position: relative; /* Necessário para alinhar os filhos */
     width: 100%;
     margin: 0 auto;
-    overflow: hidden;
+    overflow: visible; /* Garante que nada suma */
 }
 
 #planta-imagem {
@@ -59,6 +64,7 @@ header p {
     display: block;
     border-radius: 12px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    pointer-events: none; /* Faz o clique ignorar a imagem e ir direto para o botão */
 }
 
 #camada-cliques {
@@ -67,28 +73,29 @@ header p {
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: 99; /* Joga a camada de botões para cima de tudo */
 }
 
+/* --- BLOCOS DE CLIQUE (FUNDO AZUL PARA TESTE DE INTERAÇÃO) --- */
 .zona-lote {
     position: absolute;
-    background-color: rgba(59, 130, 246, 0.2);
-    border: 1px dashed rgba(59, 130, 246, 0.6);
+    background-color: rgba(59, 130, 246, 0.25) !important; /* Azul visível para teste */
+    border: 2px dashed #3b82f6 !important; /* Borda visível */
     border-radius: 4px;
     cursor: pointer;
-    z-index: 999 !important;
     transition: all 0.2s ease-in-out;
 }
 
 .zona-lote:hover {
-    background-color: rgba(59, 130, 246, 0.2);
-    border: 2px solid #3b82f6;
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    background-color: rgba(59, 130, 246, 0.45) !important;
+    border: 2px solid #1d4ed8 !important;
 }
 
+/* --- MODAL (PAINEL FLUTUANTE) --- */
 .modal {
     display: none;
     position: fixed;
-    z-index: 9999;
+    z-index: 9999; /* Sempre no topo */
     left: 0;
     top: 0;
     width: 100%;
@@ -98,7 +105,7 @@ header p {
 }
 
 .modal-conteudo {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.85);
     margin: 10% auto;
     padding: 25px;
     width: 90%;
@@ -107,13 +114,13 @@ header p {
     border: 1px solid rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 12px 36px rgba(0,0,0,0.15);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.2);
     position: relative;
-    animation: animacaoModal 0.4s ease;
+    animation: animacaoModal 0.3s ease;
 }
 
 @keyframes animacaoModal {
-    from {transform: translateY(-50px); opacity: 0;}
+    from {transform: translateY(-30px); opacity: 0;}
     to {transform: translateY(0); opacity: 1;}
 }
 
@@ -125,7 +132,6 @@ header p {
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-    transition: color 0.2s;
 }
 
 .fechar-btn:hover {
@@ -143,9 +149,9 @@ header p {
     height: 2px;
     background-color: rgba(6, 78, 59, 0.2);
     margin-bottom: 15px;
-    border-radius: 2px;
 }
 
+/* --- TABELA --- */
 .container-tabela {
     overflow-x: auto;
     border-radius: 8px;
@@ -171,13 +177,9 @@ th {
     font-weight: 600;
     text-transform: uppercase;
     font-size: 0.85rem;
-    letter-spacing: 0.5px;
 }
 
-tr:last-child td {
-    border-bottom: none;
-}
-
+/* --- INPUTS DE DIGITAÇÃO --- */
 .input-tel {
     width: 100%;
     max-width: 160px;
@@ -186,16 +188,9 @@ tr:last-child td {
     border-radius: 6px;
     font-size: 0.9rem;
     color: #1e293b;
-    transition: all 0.2s;
 }
 
 .input-tel:focus {
     border-color: #3b82f6;
     outline: none;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.input-tel::placeholder {
-    color: #94a3b8;
-    font-style: italic;
 }
