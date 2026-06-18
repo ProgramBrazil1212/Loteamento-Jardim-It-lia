@@ -71,11 +71,11 @@ header p {
 
 .zona-lote {
     position: absolute;
-    background-color: rgba(59, 130, 246, 0.0);
-    border: 1px dashed rgba(59, 130, 246, 0.4);
+    background-color: rgba(59, 130, 246, 0.2);
+    border: 1px dashed rgba(59, 130, 246, 0.6);
     border-radius: 4px;
     cursor: pointer;
-    z-index: 10;
+    z-index: 999 !important;
     transition: all 0.2s ease-in-out;
 }
 
